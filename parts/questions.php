@@ -24,7 +24,8 @@
                     class="form-control" 
                     id="name" 
                     name="name" 
-                    placeholder="Enter your name"
+                    placeholder="<?= $_SESSION['user']['name']?>"
+                    disabled readonly
                     >
             </div>
             <div class="col">
@@ -34,7 +35,8 @@
                     class="form-control" 
                     id="email" 
                     name="email" 
-                    placeholder="Enter your email"
+                    placeholder="<?= $_SESSION['user']['email']?>"
+                    disabled readonly
                     >
             </div>
         </div>

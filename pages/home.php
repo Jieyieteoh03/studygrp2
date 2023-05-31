@@ -1,4 +1,9 @@
 <?php
+    $database = connectToDB();
+    $sql = "SELECT * FROM users";
+    $query = $database->prepare($sql);
+    $query->execute();
+    $users = $query->fetchAll();
 
     require 'parts/header.php';
 
@@ -7,14 +12,13 @@
     <h1 class="h1 mb-4 text-center">Customer Service Feedback Form</h1>
 
     <div class="card p-4">
-        <?php require dirname(__DIR__) .  '/parts/message_error.php'; ?>
-        <?php require dirname(__DIR__) .  '/parts/message_success.php'; ?>
-        <?php require dirname(__DIR__) .  '/parts/questions.php'; ?>
+        <p class="text-center fs-4">Please login with your existing account or signup a new account to continue</p>
+        <div class="d-flex justify-content-center gap-3"> 
+            <a href="/login" class="btn btn-primary px-5">Login</a>
+            <a href="/signup" class="btn btn-primary px-5">Signup</a>
+        </div>
     </div>
-
-    <div class="text-center mt-4">
-        <a href="/results" class="btn btn-inverse">View Results</a>    
-
+        
 </div>
 <?php
 

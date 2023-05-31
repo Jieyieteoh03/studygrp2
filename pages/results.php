@@ -7,7 +7,13 @@
     $query->execute();
     $questions = $query->fetchAll();
     // load all the results
-    $sql = "SELECT * FROM results";
+    $sql = "SELECT * FROM 
+    results *,
+    user_name
+    user_email
+    FROM results
+    JOIN users
+    on results.user_id = user.id";
     $query = $database->prepare($sql);
     $query->execute();
     $results = $query->fetchAll();
@@ -31,8 +37,8 @@
             <?php if ( isset( $results ) ) : ?>
                 <?php foreach( $results as $result ) : ?>
                     <tr>
-                        <td><?php echo $result['name']; ?></td>
-                        <td><?php echo $result['email']; ?></td>
+                        <td><?php echo $result['user_name']; ?></td>
+                        <td><?php echo $result['user_email']; ?></td>
                         <td>
                             <?php
                             // $sql = "SELECT * FROM questions WHERE id = :id";
