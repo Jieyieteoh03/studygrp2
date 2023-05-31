@@ -1,4 +1,9 @@
 <?php
+    if(isUserLoggedIn()){
+        header("Location: /");
+        exit;
+    } 
+    
     $database = connectToDB();
     $sql = "SELECT * FROM users";
     $query = $database->prepare($sql);

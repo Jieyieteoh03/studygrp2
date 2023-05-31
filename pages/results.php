@@ -1,4 +1,9 @@
 <?php
+    if(isUserLoggedIn()){
+        header("Location: /");
+        exit;
+    }
+     
     // load database
   $database = connectToDB();
     // load all the questions

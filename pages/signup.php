@@ -1,5 +1,9 @@
 <?php
-
+  if(isUserLoggedIn()){
+    header("Location: /");
+    exit;
+  } 
+  
   require "parts/header.php"
 
 ?>
