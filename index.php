@@ -35,9 +35,6 @@
             case 'signup':
                 require 'pages/signup.php';
                 break;
-            case 'question':
-                require 'pages/question.php';
-                break;  
             default:
                 require 'pages/home.php';
                 break;

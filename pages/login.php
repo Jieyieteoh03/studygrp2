@@ -4,7 +4,7 @@
       exit;
     } 
     
-  require "parts/header.php"
+  require "parts/header.php";
 
 ?>
     <div class="container my-5 mx-auto" style="max-width: 500px;">
@@ -54,6 +54,6 @@
     </div>
 <?php
 
-  require "parts/footer.php"
+  require "parts/footer.php";
 
 ?>

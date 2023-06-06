@@ -1,27 +1,26 @@
 <?php
-    if(isUserLoggedIn()){
-        header("Location: /");
-        exit;
-    }
-     
+
     // load database
-  $database = connectToDB();
+    $database = connectToDB();
+
     // load all the questions
     $sql = "SELECT * FROM questions";
-    $query = $database->prepare($sql);
+    $query = $database->prepare( $sql );
     $query->execute();
     $questions = $query->fetchAll();
+
     // load all the results
-    $sql = "SELECT * FROM 
-    results *,
-    user_name
-    user_email
+    $sql = "SELECT 
+    results.*,
+    users.name,
+    users.email
     FROM results
     JOIN users
-    on results.user_id = user.id";
-    $query = $database->prepare($sql);
+    ON results.user_id = users.id";
+    $query = $database->prepare( $sql );
     $query->execute();
     $results = $query->fetchAll();
+
     require 'parts/header.php';
 ?>
 <div class="container mx-auto my-5" style="max-width: 700px;">
@@ -42,30 +41,20 @@
             <?php if ( isset( $results ) ) : ?>
                 <?php foreach( $results as $result ) : ?>
                     <tr>
-                        <td><?php echo $result['user_name']; ?></td>
-                        <td><?php echo $result['user_email']; ?></td>
+                        <td><?php echo $result['name']; ?></td>
+                        <td><?php echo $result['email']; ?></td>
                         <td>
-                            <?php
-                            // $sql = "SELECT * FROM questions WHERE id = :id";
-                            // $query = $database->prepare($sql);
-                            // $query->execute([
-                            //     'id' => $result['question_id']
-                            // ]);
-                            // $questions = $query->fetch();
-                            // echo $question['question'];
+                            <?php 
                                 // use the question_id in $result to find the exact question in the questions table and echo it here
-                            foreach ($questions as $question) {
-                                if ($question['id'] == $result['question_id']  ) {
+                                foreach ($questions as $question) {
+                                    if ($question ['id'] == $result['question_id'])
                                     echo $question['question'];
-                                }
-                            }
-                            ?>
+                                } 
+                                ?>
                         </td>
                         <td>
                             <!-- echo the answer here -->
-                            <?php
-                                echo $result['answer'];
-                            ?>
+                            <?= $result['answer']; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -78,4 +67,5 @@
     </div>
 </div>
 <?php
+    
     require 'parts/footer.php';
